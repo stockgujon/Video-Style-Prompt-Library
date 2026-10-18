@@ -96,11 +96,53 @@
     .copyright { margin-top: 10px; color: #777; text-align: center; font-size: .76rem; }
     .toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; padding: 10px 16px; border-radius: 999px; background: var(--yellow); color: #17130a; font-weight: 800; box-shadow: var(--shadow); transition: .2s ease; z-index: 20; }
     .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+    .platform-panel { margin: 0 0 28px; padding: 22px; border: 1px solid #51451c; border-radius: 18px; background: radial-gradient(ellipse at top right, #27210e 0%, #141414 42%, #101010 100%); }
+    .section-kicker { color: var(--yellow); font-size: .75rem; font-weight: 800; letter-spacing: .13em; }
+    .platform-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 17px; }
+    .platform-title-row h2 { margin: 4px 0 4px; font-size: clamp(1.3rem, 3vw, 1.8rem); }
+    .platform-title-row p { margin: 0; color: #b9b9b9; font-size: .9rem; }
+    .platform-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
+    .field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+    .field label, .field-label { color: #dedede; font-size: .86rem; font-weight: 700; }
+    .field select, .field input { width: 100%; min-width: 0; }
+    .resolution-custom { display: none; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .resolution-custom.visible { display: grid; }
+    .ratio-preview-row { display: flex; align-items: center; gap: 15px; margin-top: 16px; padding: 13px; border: 1px solid #333; border-radius: 12px; background: #0a0a0a; }
+    .ratio-preview { flex: 0 0 78px; height: 78px; display: flex; align-items: center; justify-content: center; }
+    .ratio-shape { position: relative; max-width: 74px; max-height: 70px; width: 74px; aspect-ratio: 16 / 9; border: 2px solid var(--yellow); border-radius: 4px; background: linear-gradient(135deg, #302811, #171717); }
+    .ratio-shape::before { content: ""; position: absolute; inset: 14%; border: 1px dashed #fff7b4; opacity: .8; }
+    .ratio-shape::after { content: ""; position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); transform: translate(-50%, -50%); }
+    .ratio-shape.vertical { width: 39px; aspect-ratio: 9 / 16; }
+    .ratio-shape.portrait { width: 52px; aspect-ratio: 4 / 5; }
+    .ratio-shape.square { width: 64px; aspect-ratio: 1 / 1; }
+    .ratio-shape.custom { width: 65px; aspect-ratio: 16 / 9; }
+    .ratio-info { flex: 1; min-width: 0; }
+    .ratio-info strong { display: block; color: var(--yellow); font-size: 1.12rem; }
+    .ratio-info span { display: block; color: #b5b5b5; font-size: .84rem; }
+    .safe-row { display: flex; align-items: flex-start; gap: 10px; margin-top: 14px; color: #d4d4d4; font-size: .87rem; }
+    .safe-row input { accent-color: var(--yellow); margin-top: 6px; }
+    .safe-row span { flex: 1; }
+    .output-panel { margin-top: 17px; padding-top: 17px; border-top: 1px solid #383838; }
+    .output-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+    .output-head h3 { margin: 0; font-size: 1rem; color: var(--yellow); }
+    .output-status { color: #9d9d9d; font-size: .8rem; }
+    #combined-output { width: 100%; min-height: 150px; resize: vertical; padding: 14px; border: 1px solid #393939; border-radius: 10px; background: #080808; color: #f2f2f2; line-height: 1.8; font: inherit; font-size: .88rem; }
+    .output-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .platform-note { margin: 11px 0 0; color: #8f8f8f; font-size: .78rem; }
+    .style-card .card-actions { flex-wrap: wrap; }
+    .style-card .card-actions .btn { min-width: 105px; }
+    .btn.selected-style { border-color: var(--yellow); color: var(--yellow); background: #27210e; }
+
     @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 620px) {
       .shell { width: min(100% - 24px, 1180px); }
       header { padding-top: 28px; }
       .toolbar { grid-template-columns: 1fr; }
+      .platform-panel { padding: 16px; }
+      .platform-grid { grid-template-columns: 1fr; }
+      .platform-title-row { flex-direction: column; }
+      .output-head { align-items: flex-start; flex-direction: column; }
       .grid { grid-template-columns: 1fr; }
       .style-card { padding: 17px; }
       .modal-head, .modal-body { padding-left: 17px; padding-right: 17px; }
@@ -127,6 +169,79 @@
   </header>
 
   <main class="shell">
+    <section class="platform-panel" aria-labelledby="platform-heading">
+      <div class="platform-title-row">
+        <div>
+          <div class="section-kicker">VIDEO FORMAT BUILDER</div>
+          <h2 id="platform-heading">影片平台與畫面規格</h2>
+          <p>先選擇發布平台，再把輸出規格與下方任一視覺風格組合成提示詞。</p>
+        </div>
+        <span class="meta-pill">可與 24 種風格搭配</span>
+      </div>
+      <div class="platform-grid">
+        <div class="field">
+          <label for="platform-select">1. 發布平台</label>
+          <select id="platform-select">
+            <option value="yt_long">YouTube 一般影片｜16:9</option>
+            <option value="yt_short">YouTube Shorts｜9:16</option>
+            <option value="ig_reels" selected>Instagram Reels｜9:16</option>
+            <option value="tiktok">TikTok｜9:16</option>
+            <option value="ig_feed">Instagram 貼文直式影片｜4:5</option>
+            <option value="stories">IG／FB 限時動態｜9:16</option>
+            <option value="fb_reels">Facebook Reels｜9:16</option>
+            <option value="square">正方形通用影片｜1:1</option>
+            <option value="custom">自訂畫面比例／尺寸</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="resolution-select">2. 輸出解析度</label>
+          <select id="resolution-select">
+            <option value="recommended">建議尺寸</option>
+            <option value="high">高解析度（依比例提高）</option>
+            <option value="custom">自訂寬高（px）</option>
+          </select>
+          <div class="resolution-custom" id="custom-resolution">
+            <input id="custom-width" type="number" min="1" max="16384" value="1080" aria-label="自訂影片寬度" placeholder="寬度">
+            <input id="custom-height" type="number" min="1" max="16384" value="1920" aria-label="自訂影片高度" placeholder="高度">
+          </div>
+        </div>
+        <div class="field">
+          <label for="composition-select">3. 構圖提醒</label>
+          <select id="composition-select">
+            <option value="safe">一般安全構圖</option>
+            <option value="center">主體置中</option>
+            <option value="left">主體偏左</option>
+            <option value="right">主體偏右</option>
+            <option value="wide">寬景／環境優先</option>
+            <option value="close">近景／主體特寫</option>
+          </select>
+        </div>
+      </div>
+      <div class="ratio-preview-row">
+        <div class="ratio-preview"><div class="ratio-shape vertical" id="ratio-shape"></div></div>
+        <div class="ratio-info">
+          <strong id="ratio-label">9:16 直式畫面</strong>
+          <span id="resolution-label">1080 × 1920 px</span>
+          <span id="platform-description">直式滿版；重要主體與文字應避開平台介面遮擋區。</span>
+        </div>
+      </div>
+      <label class="safe-row">
+        <input type="checkbox" id="safe-area" checked>
+        <span><strong>加入安全區提示</strong><br>提醒生成工具避免把人物臉部、商品、字幕或重要元素放在畫面邊緣及常見介面遮擋區。實際安全區仍依平台版位而異。</span>
+      </label>
+      <div class="output-panel">
+        <div class="output-head">
+          <h3>組合後的影片提示詞</h3>
+          <span class="output-status" id="output-status">尚未選擇視覺風格</span>
+        </div>
+        <textarea id="combined-output" readonly aria-label="組合後的影片提示詞">請先從下方風格卡片點選「套用風格」，即可將該風格模板與此處的平台規格組合。</textarea>
+        <div class="output-actions">
+          <button type="button" class="btn primary" id="copy-combined"><span aria-hidden="true">⧉</span> 複製完整提示詞</button>
+          <button type="button" class="btn" id="clear-style">清除已選風格</button>
+        </div>
+        <p class="platform-note">尺寸為常用製作建議，並非平台唯一接受的規格。若使用自訂比例，請確認所使用的影片生成工具支援該尺寸。</p>
+      </div>
+    </section>
     <section aria-label="搜尋與篩選">
       <div class="toolbar">
         <label class="search-wrap">
@@ -173,7 +288,7 @@
 
   <script>
     const DATA_URL = "./styles.json";
-    const state = { data: null, category: "all", query: "" };
+    const state = { data: null, category: "all", query: "", selectedStyleId: null };
     const $ = (selector) => document.querySelector(selector);
     const grid = $("#style-grid");
     const search = $("#search");
@@ -196,6 +311,92 @@
         style.template_zh, style.template_en
       ].join(" ").toLowerCase();
     }
+    const platformPresets = {
+      yt_long: { name: "YouTube 一般影片", ratio: "16:9", width: 1920, height: 1080, shape: "landscape", description: "橫向寬畫面，兼顧主體與背景環境。" },
+      yt_short: { name: "YouTube Shorts", ratio: "9:16", width: 1080, height: 1920, shape: "vertical", description: "直式全螢幕，主體清楚並保留上下呼吸空間。" },
+      ig_reels: { name: "Instagram Reels", ratio: "9:16", width: 1080, height: 1920, shape: "vertical", description: "直式滿版，重要內容避開介面與字幕遮擋區。" },
+      tiktok: { name: "TikTok", ratio: "9:16", width: 1080, height: 1920, shape: "vertical", description: "直式短影音，主體醒目，預留操作介面空間。" },
+      ig_feed: { name: "Instagram 貼文直式影片", ratio: "4:5", width: 1080, height: 1350, shape: "portrait", description: "直式貼文畫面，主體與文字集中於有效區域。" },
+      stories: { name: "IG／FB 限時動態", ratio: "9:16", width: 1080, height: 1920, shape: "vertical", description: "直式滿版，重要資訊避開上下介面區域。" },
+      fb_reels: { name: "Facebook Reels", ratio: "9:16", width: 1080, height: 1920, shape: "vertical", description: "直式短影音，構圖保留平台介面安全空間。" },
+      square: { name: "正方形通用影片", ratio: "1:1", width: 1080, height: 1080, shape: "square", description: "正方形構圖，主體清楚並保留四周空間。" },
+      custom: { name: "自訂畫面規格", ratio: "自訂比例", width: 1080, height: 1920, shape: "custom", description: "依照自訂寬高輸出，請確認生成工具支援此比例。" }
+    };
+    const compositionPrompts = {
+      safe: "構圖需清楚易讀，保留合理邊界與主體呼吸空間。",
+      center: "主要人物或物件置於畫面中央附近，避免重要細節被裁切。",
+      left: "主要人物或物件偏左構圖，右側保留適當視覺空間。",
+      right: "主要人物或物件偏右構圖，左側保留適當視覺空間。",
+      wide: "優先呈現環境、空間層次與背景氛圍，採用較寬廣的景別。",
+      close: "以近景或主體特寫呈現細節，確保主體清晰且不被畫面邊緣裁切。"
+    };
+    function gcd(a, b) {
+      a = Math.abs(Math.round(a)); b = Math.abs(Math.round(b));
+      while (b) { const t = b; b = a % b; a = t; }
+      return a || 1;
+    }
+    function getPlatformConfig() {
+      const platformId = $("#platform-select").value;
+      const preset = platformPresets[platformId] || platformPresets.ig_reels;
+      let width = preset.width, height = preset.height;
+      const resolution = $("#resolution-select").value;
+      if (platformId === "custom" || resolution === "custom") {
+        width = Math.max(1, Math.min(16384, Number($("#custom-width").value) || preset.width));
+        height = Math.max(1, Math.min(16384, Number($("#custom-height").value) || preset.height));
+      } else if (resolution === "high") {
+        // Double the preset's standard dimensions while preserving its aspect ratio.
+        width = preset.width * 2;
+        height = preset.height * 2;
+      }
+      const divisor = gcd(width, height);
+      const ratio = `${width / divisor}:${height / divisor}`;
+      return { ...preset, platformId, width, height, ratio, resolution };
+    }
+    function getCompositionText(config) {
+      const composition = compositionPrompts[$("#composition-select").value] || compositionPrompts.safe;
+      const safe = $("#safe-area").checked
+        ? "重要主體、人物臉部、字幕與關鍵物件需避開畫面邊緣及常見平台介面遮擋區，保留安全留白；依實際平台版位調整安全區。"
+        : "";
+      return [
+        `發布平台：${config.name}`,
+        `畫面比例：${config.ratio}`,
+        `輸出解析度：${config.width} × ${config.height} px`,
+        `畫面方向：${config.width > config.height ? "橫式" : config.width < config.height ? "直式" : "正方形"}`,
+        `構圖要求：${composition}`,
+        config.description,
+        safe
+      ].filter(Boolean).join("\n");
+    }
+    function updatePlatformUI() {
+      const config = getPlatformConfig();
+      $("#ratio-label").textContent = `${config.ratio}${config.width > config.height ? " 橫式畫面" : config.width < config.height ? " 直式畫面" : " 正方形畫面"}`;
+      $("#resolution-label").textContent = `${config.width} × ${config.height} px`;
+      $("#platform-description").textContent = config.description;
+      const shape = $("#ratio-shape");
+      shape.className = "ratio-shape " + (config.width === config.height ? "square" : config.width > config.height ? "landscape" : (config.width / config.height > 0.78 ? "portrait" : "vertical"));
+      if (config.width > config.height) shape.style.aspectRatio = `${config.width} / ${config.height}`;
+      else shape.style.aspectRatio = "";
+      $("#custom-resolution").classList.toggle("visible", $("#resolution-select").value === "custom" || $("#platform-select").value === "custom");
+      updateCombinedOutput();
+    }
+    function updateCombinedOutput() {
+      if (!state.data) return;
+      const config = getPlatformConfig();
+      const style = state.data.styles.find((item) => item.id === state.selectedStyleId);
+      const platformPrompt = getCompositionText(config);
+      const output = style
+        ? `${style.template_zh}\n\n【影片平台與畫面規格】\n${platformPrompt}`
+        : `【影片平台與畫面規格】\n${platformPrompt}\n\n請從下方風格卡片點選「套用風格」，即可將選定風格模板與平台規格組合。`;
+      $("#combined-output").value = output;
+      $("#output-status").textContent = style ? `已套用風格：${style.name_zh}` : "尚未選擇視覺風格";
+    }
+    function applyStyle(styleId) {
+      state.selectedStyleId = styleId;
+      renderCards();
+      updateCombinedOutput();
+      showToast("已將風格加入輸出提示詞");
+    }
+
     function renderCategories() {
       const all = [{ id: "all", name_zh: "全部風格" }, ...state.data.categories];
       $("#categories").innerHTML = all.map((item) => `
@@ -233,7 +434,8 @@
           <div class="visual-tags">${(style.visual_tags || []).slice(0, 4).map(tag => `<span>${escapeHTML(tag)}</span>`).join("")}</div>
           <div class="card-actions">
             <button type="button" class="btn" data-open="${escapeHTML(style.id)}">查看提示詞</button>
-            <button type="button" class="btn primary" data-copy="${escapeHTML(style.id)}" data-kind="template_zh">複製模板 ↗</button>
+            <button type="button" class="btn ${state.selectedStyleId === style.id ? "selected-style" : ""}" data-use-style="${escapeHTML(style.id)}">${state.selectedStyleId === style.id ? "✓ 已套用" : "套用風格"}</button>
+            <button type="button" class="btn primary" data-copy="${escapeHTML(style.id)}" data-kind="template_zh">複製模板</button>
           </div>
         </article>`).join("");
     }
@@ -299,6 +501,8 @@
         state.category = categoryButton.dataset.category;
         renderCategories(); renderCards(); return;
       }
+      const useStyleButton = event.target.closest("[data-use-style]");
+      if (useStyleButton) { applyStyle(useStyleButton.dataset.useStyle); return; }
       const openButton = event.target.closest("[data-open]");
       if (openButton) { openDetail(openButton.dataset.open); return; }
       const copyButton = event.target.closest("[data-copy]");
@@ -314,6 +518,21 @@
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) dialog.close();
     });
+    ["platform-select", "resolution-select", "composition-select", "safe-area", "custom-width", "custom-height"].forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.addEventListener("change", updatePlatformUI);
+        element.addEventListener("input", updatePlatformUI);
+      }
+    });
+    $("#copy-combined").addEventListener("click", () => copyText($("#combined-output").value));
+    $("#clear-style").addEventListener("click", () => {
+      state.selectedStyleId = null;
+      renderCards();
+      updateCombinedOutput();
+      showToast("已清除套用風格");
+    });
+
     fetch(DATA_URL)
       .then((response) => {
         if (!response.ok) throw new Error("無法讀取 styles.json");
@@ -324,6 +543,7 @@
         state.data = data;
         renderCategories();
         renderCards();
+        updatePlatformUI();
       })
       .catch((error) => {
         console.error(error);
