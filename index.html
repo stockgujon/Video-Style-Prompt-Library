@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="影片視覺風格提示詞資料庫，快速搜尋、瀏覽並複製中英文風格提示詞與模板。">
+  <title>影片風格提示詞庫｜股匠理財部落</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080808;
+      --panel: #121212;
+      --panel-2: #191919;
+      --line: #303030;
+      --yellow: #ffd84d;
+      --yellow-soft: #ffe98c;
+      --white: #f5f5f5;
+      --muted: #a7a7a7;
+      --green: #b8f28b;
+      --radius: 16px;
+      --shadow: 0 14px 38px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--white);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: var(--yellow); text-underline-offset: 4px; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+    .topline { height: 5px; background: linear-gradient(90deg, #ffd84d 0%, #fff0a3 45%, #ffd84d 100%); }
+    header { padding: 38px 0 26px; border-bottom: 1px solid var(--line); }
+    .eyebrow { display: flex; align-items: center; gap: 9px; color: var(--yellow); font-size: .78rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; display: block; width: 24px; height: 2px; background: var(--yellow); }
+    h1 { margin: 12px 0 8px; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.12; letter-spacing: -.04em; }
+    h1 span { color: var(--yellow); }
+    .lead { max-width: 720px; margin: 0; color: #c7c7c7; font-size: 1.02rem; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .meta-pill { padding: 6px 11px; border: 1px solid #45402c; border-radius: 999px; color: var(--yellow-soft); font-size: .82rem; background: #17150d; }
+    main { padding: 28px 0 56px; }
+    .toolbar { display: grid; grid-template-columns: minmax(220px, 1fr) auto; gap: 14px; align-items: center; margin-bottom: 18px; }
+    .search-wrap { position: relative; }
+    .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--yellow); font-size: 1.1rem; pointer-events: none; }
+    #search { width: 100%; border: 1px solid #383838; border-radius: 12px; background: var(--panel); color: var(--white); padding: 14px 16px 14px 43px; outline: none; }
+    #search:focus, select:focus { border-color: var(--yellow); box-shadow: 0 0 0 3px #ffd84d20; }
+    select { border: 1px solid #383838; border-radius: 12px; padding: 14px 38px 14px 13px; color: var(--white); background: var(--panel); max-width: 100%; }
+    .categories { display: flex; flex-wrap: wrap; gap: 9px; margin: 0 0 26px; }
+    .category-btn { border: 1px solid #3a3a3a; border-radius: 999px; background: transparent; color: #d4d4d4; padding: 8px 14px; font-size: .9rem; transition: .18s ease; }
+    .category-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+    .category-btn.active { background: var(--yellow); color: #15120a; border-color: var(--yellow); font-weight: 800; }
+    .result-line { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 15px; color: var(--muted); font-size: .9rem; }
+    .result-line strong { color: var(--yellow); font-size: 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .style-card { display: flex; flex-direction: column; min-width: 0; padding: 19px; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(145deg, #151515, #0e0e0e); box-shadow: var(--shadow); transition: transform .18s ease, border-color .18s ease; }
+    .style-card:hover { transform: translateY(-3px); border-color: #6b5a1c; }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .number { color: #696969; font-size: .78rem; font-weight: 800; letter-spacing: .12em; }
+    .tag { color: var(--yellow); background: #27210e; border: 1px solid #49401d; border-radius: 6px; padding: 3px 7px; font-size: .72rem; white-space: nowrap; }
+    .style-card h2 { margin: 10px 0 0; font-size: 1.2rem; line-height: 1.35; }
+    .english-name { margin-top: 3px; color: #a7a7a7; font-size: .86rem; }
+    .description { margin: 13px 0 14px; color: #c8c8c8; font-size: .91rem; flex: 1; }
+    .visual-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 17px; }
+    .visual-tags span { color: #bcbcbc; background: #202020; border-radius: 5px; padding: 3px 7px; font-size: .73rem; }
+    .card-actions { display: flex; gap: 8px; margin-top: auto; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid #464646; border-radius: 9px; padding: 9px 12px; background: #1d1d1d; color: var(--white); font-size: .85rem; font-weight: 700; transition: .18s ease; }
+    .btn:hover { border-color: var(--yellow); color: var(--yellow); }
+    .btn.primary { border-color: var(--yellow); background: var(--yellow); color: #17130a; }
+    .btn.primary:hover { background: var(--yellow-soft); }
+    .card-actions .btn { flex: 1; }
+    .empty { grid-column: 1 / -1; text-align: center; padding: 60px 20px; border: 1px dashed #414141; border-radius: var(--radius); color: var(--muted); }
+    .empty strong { display: block; color: var(--yellow); font-size: 1.15rem; margin-bottom: 7px; }
+    dialog { width: min(780px, calc(100% - 24px)); max-height: min(88vh, 900px); padding: 0; border: 1px solid #4a432b; border-radius: 18px; color: var(--white); background: #101010; box-shadow: 0 28px 100px #000b; }
+    dialog::backdrop { background: #000c; backdrop-filter: blur(5px); }
+    .modal-head { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; padding: 22px 24px 18px; border-bottom: 1px solid var(--line); }
+    .modal-head h2 { margin: 0; font-size: 1.5rem; }
+    .modal-head p { margin: 4px 0 0; color: var(--muted); }
+    .close-btn { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 10px; border: 1px solid #444; color: white; background: #202020; font-size: 1.3rem; }
+    .modal-body { padding: 20px 24px 25px; overflow-y: auto; }
+    .detail-description { color: #c8c8c8; margin: 0 0 18px; }
+    .prompt-section { margin-top: 20px; }
+    .prompt-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 9px; }
+    .prompt-head h3 { margin: 0; color: var(--yellow); font-size: 1rem; }
+    .prompt-text { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; padding: 15px; border: 1px solid #303030; border-radius: 11px; background: #080808; color: #e9e9e9; font-size: .9rem; line-height: 1.8; }
+    .compat { display: flex; flex-wrap: wrap; gap: 7px; }
+    .compat span { border: 1px solid #3b3b3b; border-radius: 7px; padding: 4px 8px; color: #d0d0d0; font-size: .8rem; }
+    .hint { margin: 12px 0 0; color: #888; font-size: .82rem; }
+    footer { border-top: 1px solid #333; background: #0d0d0d; padding: 25px 0 29px; }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 26px; text-align: center; color: #d4d4d4; font-size: .9rem; }
+    .footer-inner p { margin: 0; }
+    .footer-inner a { color: #d4d4d4; font-weight: 700; text-decoration: none; }
+    .footer-inner a:hover { color: #ffffff; text-decoration: underline; }
+    .copyright { margin-top: 10px; color: #777; text-align: center; font-size: .76rem; }
+    .toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; padding: 10px 16px; border-radius: 999px; background: var(--yellow); color: #17130a; font-weight: 800; box-shadow: var(--shadow); transition: .2s ease; z-index: 20; }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 24px, 1180px); }
+      header { padding-top: 28px; }
+      .toolbar { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .style-card { padding: 17px; }
+      .modal-head, .modal-body { padding-left: 17px; padding-right: 17px; }
+      .result-line { align-items: flex-start; flex-direction: column; gap: 2px; }
+      .footer-inner { flex-direction: column; gap: 7px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <div class="shell">
+      <div class="eyebrow">VIDEO STYLE PROMPT LIBRARY</div>
+      <h1>影片風格<span>提示詞庫</span></h1>
+      <p class="lead">把視覺風格變成可直接使用的提示詞。搜尋你想要的影像美學、光影、色彩質感與動態呈現，快速複製並套用到自己的影片主題。</p>
+      <div class="hero-meta">
+        <span class="meta-pill">24 種視覺風格</span>
+        <span class="meta-pill">中英雙語提示詞</span>
+        <span class="meta-pill">一鍵複製</span>
+        <span class="meta-pill">純前端・無需登入</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section aria-label="搜尋與篩選">
+      <div class="toolbar">
+        <label class="search-wrap">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="搜尋風格、關鍵字或提示詞……" autocomplete="off" aria-label="搜尋風格">
+        </label>
+        <select id="sort" aria-label="排序方式">
+          <option value="default">預設排序</option>
+          <option value="zh">中文名稱 A–Z</option>
+          <option value="en">英文名稱 A–Z</option>
+        </select>
+      </div>
+      <nav class="categories" id="categories" aria-label="風格分類"></nav>
+      <div class="result-line">
+        <span id="result-count" aria-live="polite">正在載入風格資料……</span>
+        <span>點選卡片可查看完整提示詞</span>
+      </div>
+    </section>
+    <section class="grid" id="style-grid" aria-label="影片風格列表">
+      <div class="empty"><strong>正在載入資料庫</strong>請稍候片刻……</div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div class="footer-inner">
+        <p>網頁製作：股匠理財部落</p>
+        <p>Instagram：<a href="https://www.instagram.com/stockgujon" target="_blank" rel="noopener noreferrer">stockgujon</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <dialog id="detail-dialog" aria-labelledby="detail-title">
+    <div class="modal-head">
+      <div>
+        <h2 id="detail-title"></h2>
+        <p id="detail-subtitle"></p>
+      </div>
+      <button class="close-btn" id="close-dialog" aria-label="關閉">×</button>
+    </div>
+    <div class="modal-body" id="detail-body"></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite">已複製</div>
+
+  <script>
+    const DATA_URL = "./styles.json";
+    const state = { data: null, category: "all", query: "" };
+    const $ = (selector) => document.querySelector(selector);
+    const grid = $("#style-grid");
+    const search = $("#search");
+    const sort = $("#sort");
+    const dialog = $("#detail-dialog");
+    const toast = $("#toast");
+
+    function escapeHTML(value = "") {
+      return String(value).replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[char]);
+    }
+    function categoryName(id) {
+      return state.data.categories.find((item) => item.id === id)?.name_zh || id;
+    }
+    function allSearchableText(style) {
+      return [
+        style.name_zh, style.name_en, style.description,
+        ...(style.visual_tags || []), style.prompt_zh, style.prompt_en,
+        style.template_zh, style.template_en
+      ].join(" ").toLowerCase();
+    }
+    function renderCategories() {
+      const all = [{ id: "all", name_zh: "全部風格" }, ...state.data.categories];
+      $("#categories").innerHTML = all.map((item) => `
+        <button type="button" class="category-btn ${state.category === item.id ? "active" : ""}"
+          data-category="${escapeHTML(item.id)}" aria-pressed="${state.category === item.id}">
+          ${escapeHTML(item.name_zh)}
+        </button>`).join("");
+    }
+    function getFilteredStyles() {
+      let items = state.data.styles.filter((style) => {
+        const categoryMatch = state.category === "all" || style.category === state.category;
+        const queryMatch = !state.query || allSearchableText(style).includes(state.query.toLowerCase());
+        return categoryMatch && queryMatch;
+      });
+      if (sort.value === "zh") items.sort((a, b) => a.name_zh.localeCompare(b.name_zh, "zh-Hant"));
+      if (sort.value === "en") items.sort((a, b) => a.name_en.localeCompare(b.name_en));
+      return items;
+    }
+    function renderCards() {
+      const items = getFilteredStyles();
+      $("#result-count").innerHTML = `找到 <strong>${items.length}</strong> 種風格`;
+      if (!items.length) {
+        grid.innerHTML = `<div class="empty"><strong>沒有找到符合的風格</strong>試試其他關鍵字，或切換到「全部風格」。</div>`;
+        return;
+      }
+      grid.innerHTML = items.map((style) => `
+        <article class="style-card">
+          <div class="card-top">
+            <span class="number">${escapeHTML(style.id.toUpperCase().replace(/-/g, " "))}</span>
+            <span class="tag">${escapeHTML(categoryName(style.category))}</span>
+          </div>
+          <h2>${escapeHTML(style.name_zh)}</h2>
+          <div class="english-name">${escapeHTML(style.name_en)}</div>
+          <p class="description">${escapeHTML(style.description)}</p>
+          <div class="visual-tags">${(style.visual_tags || []).slice(0, 4).map(tag => `<span>${escapeHTML(tag)}</span>`).join("")}</div>
+          <div class="card-actions">
+            <button type="button" class="btn" data-open="${escapeHTML(style.id)}">查看提示詞</button>
+            <button type="button" class="btn primary" data-copy="${escapeHTML(style.id)}" data-kind="template_zh">複製模板 ↗</button>
+          </div>
+        </article>`).join("");
+    }
+    async function copyText(text) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const area = document.createElement("textarea");
+          area.value = text; area.style.position = "fixed"; area.style.opacity = "0";
+          document.body.appendChild(area); area.select();
+          const ok = document.execCommand("copy"); area.remove();
+          if (!ok) throw new Error("copy failed");
+        }
+        showToast("已複製到剪貼簿");
+      } catch (error) {
+        showToast("複製失敗，請開啟提示詞後手動複製");
+      }
+    }
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 2100);
+    }
+    function promptBlock(title, text, styleId, kind) {
+      return `<section class="prompt-section">
+        <div class="prompt-head">
+          <h3>${escapeHTML(title)}</h3>
+          <button class="btn" type="button" data-copy="${escapeHTML(styleId)}" data-kind="${escapeHTML(kind)}">複製這段</button>
+        </div>
+        <pre class="prompt-text">${escapeHTML(text || "目前沒有提供此項內容。")}</pre>
+      </section>`;
+    }
+    function openDetail(styleId) {
+      const style = state.data.styles.find((item) => item.id === styleId);
+      if (!style) return;
+      $("#detail-title").textContent = style.name_zh;
+      $("#detail-subtitle").textContent = `${style.name_en} · ${categoryName(style.category)}`;
+      const compatible = (style.compatible_styles || []).map((id) => {
+        const match = state.data.styles.find((item) => item.id === id);
+        return match ? `<span>${escapeHTML(match.name_zh)}</span>` : "";
+      }).join("");
+      const avoid = (style.avoid_combinations || []).map((id) => {
+        const match = state.data.styles.find((item) => item.id === id);
+        return match ? `<span>${escapeHTML(match.name_zh)}</span>` : "";
+      }).join("");
+      $("#detail-body").innerHTML = `
+        <p class="detail-description">${escapeHTML(style.description)}</p>
+        <div class="visual-tags">${(style.visual_tags || []).map(tag => `<span>${escapeHTML(tag)}</span>`).join("")}</div>
+        ${promptBlock("純風格提示詞｜中文", style.prompt_zh, style.id, "prompt_zh")}
+        ${promptBlock("純風格提示詞｜English", style.prompt_en, style.id, "prompt_en")}
+        ${promptBlock("完整風格模板｜中文", style.template_zh, style.id, "template_zh")}
+        ${promptBlock("完整風格模板｜English", style.template_en, style.id, "template_en")}
+        ${compatible ? `<section class="prompt-section"><div class="prompt-head"><h3>可搭配風格</h3></div><div class="compat">${compatible}</div></section>` : ""}
+        ${avoid ? `<section class="prompt-section"><div class="prompt-head"><h3>建議避免直接混搭</h3></div><div class="compat">${avoid}</div></section>` : ""}
+        <p class="hint">提示：模板中的 <code>{SUBJECT_SCENE}</code> 請替換成你自己的主題或場景描述；本工具只提供視覺風格提示詞。</p>`;
+      dialog.showModal();
+    }
+    document.addEventListener("click", (event) => {
+      const categoryButton = event.target.closest("[data-category]");
+      if (categoryButton) {
+        state.category = categoryButton.dataset.category;
+        renderCategories(); renderCards(); return;
+      }
+      const openButton = event.target.closest("[data-open]");
+      if (openButton) { openDetail(openButton.dataset.open); return; }
+      const copyButton = event.target.closest("[data-copy]");
+      if (copyButton) {
+        const style = state.data?.styles.find((item) => item.id === copyButton.dataset.copy);
+        const text = style?.[copyButton.dataset.kind];
+        if (text) copyText(text);
+      }
+    });
+    search.addEventListener("input", () => { state.query = search.value.trim(); renderCards(); });
+    sort.addEventListener("change", renderCards);
+    $("#close-dialog").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    fetch(DATA_URL)
+      .then((response) => {
+        if (!response.ok) throw new Error("無法讀取 styles.json");
+        return response.json();
+      })
+      .then((data) => {
+        if (!Array.isArray(data.styles) || !Array.isArray(data.categories)) throw new Error("資料格式不正確");
+        state.data = data;
+        renderCategories();
+        renderCards();
+      })
+      .catch((error) => {
+        console.error(error);
+        $("#result-count").textContent = "資料載入失敗";
+        grid.innerHTML = `<div class="empty"><strong>無法載入風格資料庫</strong>請確認 index.html 與 styles.json 放在同一個資料夾，並透過 GitHub Pages 或本機伺服器開啟網站。</div>`;
+      });
+  </script>
+</body>
+</html>

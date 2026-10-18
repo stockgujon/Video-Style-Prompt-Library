@@ -1,0 +1,674 @@
+{
+  "version": "1.0.0",
+  "title": "短影音風格提示詞庫",
+  "description": "純前端影片視覺風格提示詞資料。只涵蓋影像呈現風格，不生成企劃、腳本或分鏡。",
+  "placeholder": "{SUBJECT_SCENE}",
+  "categories": [
+    {
+      "id": "visual_aesthetics",
+      "name_zh": "影像美學風格",
+      "name_en": "Visual Aesthetics"
+    },
+    {
+      "id": "lighting_mood",
+      "name_zh": "光影氛圍風格",
+      "name_en": "Lighting & Mood"
+    },
+    {
+      "id": "color_texture",
+      "name_zh": "色彩與影像質感",
+      "name_en": "Color & Texture"
+    },
+    {
+      "id": "motion_presentation",
+      "name_zh": "動態與影像呈現",
+      "name_en": "Motion & Presentation"
+    }
+  ],
+  "styles": [
+    {
+      "id": "cinematic",
+      "name_zh": "電影敘事感",
+      "name_en": "Cinematic",
+      "category": "visual_aesthetics",
+      "description": "具有電影畫面的構圖、自然景深與細膩的影像層次，營造精緻且有情緒張力的視覺質感。",
+      "visual_tags": [
+        "電影感",
+        "寫實",
+        "景深",
+        "細膩光影"
+      ],
+      "prompt_zh": "電影級構圖，自然且有層次的景深，細膩的明暗變化，精緻的電影式色彩分級，真實材質與自然光影，畫面具有成熟、連貫且富有情緒感染力的電影質感。",
+      "prompt_en": "Cinematic composition, natural layered depth of field, nuanced light and shadow, refined filmic color grading, realistic textures and natural lighting, with a cohesive, emotionally evocative cinematic visual aesthetic.",
+      "template_zh": "將 {SUBJECT_SCENE} 呈現為具有電影敘事感的影像，採用電影級構圖、自然景深與細膩光影，搭配精緻且連貫的電影式色彩分級。保留真實材質與自然細節，讓整體畫面成熟、統一且富有電影質感。",
+      "template_en": "Render {SUBJECT_SCENE} with a cinematic visual aesthetic, using cinematic composition, natural depth of field, nuanced lighting, and refined, cohesive filmic color grading. Preserve realistic textures and natural details for a polished, unified film-like image.",
+      "compatible_styles": [
+        "golden-hour",
+        "warm-cinematic",
+        "smooth-motion",
+        "soft-natural-light"
+      ],
+      "avoid_combinations": [
+        "neon-noir",
+        "bold-contrast"
+      ]
+    },
+    {
+      "id": "documentary",
+      "name_zh": "紀實寫實風格",
+      "name_en": "Documentary Realism",
+      "category": "visual_aesthetics",
+      "description": "強調真實環境、自然光線與未過度修飾的細節，呈現觀察式、可信且貼近現場的影像。",
+      "visual_tags": [
+        "寫實",
+        "自然",
+        "生活感",
+        "低修飾"
+      ],
+      "prompt_zh": "紀實寫實的影像質感，自然環境光，真實材質與細節，克制的色彩處理，不過度美化或戲劇化，保留現場感與可信的視覺表現。",
+      "prompt_en": "Documentary realism, natural available light, authentic textures and details, restrained color treatment, minimal embellishment, and a credible, observational visual style.",
+      "template_zh": "以紀實寫實風格呈現 {SUBJECT_SCENE}，保留自然環境光、真實材質與細節，採用克制的色彩處理，避免過度美化、過度銳化或不必要的戲劇化效果，呈現可信且貼近現場的視覺質感。",
+      "template_en": "Present {SUBJECT_SCENE} in a documentary-realistic style, preserving natural available light, authentic textures, and fine details. Use restrained color treatment and avoid excessive beautification, oversharpening, or unnecessary dramatic effects for a credible, grounded image.",
+      "compatible_styles": [
+        "soft-natural-light",
+        "handheld-realism",
+        "muted-tones",
+        "first-person"
+      ],
+      "avoid_combinations": [
+        "minimalist-luxury",
+        "dreamy-glow"
+      ]
+    },
+    {
+      "id": "japanese-aesthetic",
+      "name_zh": "日系清新風格",
+      "name_en": "Japanese Aesthetic",
+      "category": "visual_aesthetics",
+      "description": "柔和自然光、克制色彩與細緻留白，營造安靜、清爽、帶有日常詩意的畫面。",
+      "visual_tags": [
+        "清新",
+        "柔和",
+        "低飽和",
+        "生活感"
+      ],
+      "prompt_zh": "日系清新影像美學，柔和自然光，克制而協調的色彩，細緻留白，低至中等飽和度，真實且溫柔的材質表現，安靜、清爽而不過度修飾。",
+      "prompt_en": "Japanese-inspired visual aesthetic, soft natural light, restrained harmonious colors, delicate negative space, low-to-medium saturation, gentle realistic textures, and a quiet, airy, understated finish.",
+      "template_zh": "以日系清新美學呈現 {SUBJECT_SCENE}，運用柔和自然光、協調而克制的色彩與細緻留白，維持低至中等飽和度和自然材質，讓畫面清爽、安靜、溫柔，避免過度銳利或濃重的視覺效果。",
+      "template_en": "Render {SUBJECT_SCENE} with a Japanese-inspired aesthetic, using soft natural light, harmonious restrained colors, delicate negative space, and low-to-medium saturation. Preserve natural textures for an airy, quiet, gentle look without overly sharp or heavy visual effects.",
+      "compatible_styles": [
+        "soft-natural-light",
+        "muted-tones",
+        "golden-hour",
+        "smooth-motion"
+      ],
+      "avoid_combinations": [
+        "bold-contrast",
+        "neon-noir"
+      ]
+    },
+    {
+      "id": "korean-aesthetic",
+      "name_zh": "韓系精緻風格",
+      "name_en": "Korean Aesthetic",
+      "category": "visual_aesthetics",
+      "description": "乾淨明亮、色彩協調、光線柔順，呈現現代、精緻且經過整理的商業影像感。",
+      "visual_tags": [
+        "精緻",
+        "乾淨",
+        "明亮",
+        "現代"
+      ],
+      "prompt_zh": "韓系精緻視覺美學，乾淨俐落的畫面，柔順且均勻的光線，協調的中性色彩，清晰但不過度銳利的細節，現代、明亮、精緻的整體質感。",
+      "prompt_en": "Polished Korean-inspired visual aesthetic, clean and uncluttered imagery, soft even lighting, harmonious neutral colors, crisp but natural details, and a bright, modern, refined finish.",
+      "template_zh": "以韓系精緻美學呈現 {SUBJECT_SCENE}，採用乾淨俐落的構圖、柔順均勻的光線與協調的中性色彩。細節清晰但保留自然質感，整體明亮、現代、精緻，避免過度飽和或厚重的後製效果。",
+      "template_en": "Present {SUBJECT_SCENE} with a polished Korean-inspired aesthetic, using clean composition, soft even lighting, and harmonious neutral colors. Keep details crisp yet natural for a bright, modern, refined look, avoiding excessive saturation or heavy post-processing.",
+      "compatible_styles": [
+        "soft-natural-light",
+        "clean-airy",
+        "minimalist-luxury",
+        "warm-cinematic"
+      ],
+      "avoid_combinations": [
+        "vintage-film",
+        "neon-noir"
+      ]
+    },
+    {
+      "id": "vintage-film",
+      "name_zh": "復古底片風格",
+      "name_en": "Vintage Film",
+      "category": "visual_aesthetics",
+      "description": "模擬類比底片的褪色、柔和對比與細微顆粒，帶有懷舊而自然的影像氣息。",
+      "visual_tags": [
+        "復古",
+        "底片",
+        "懷舊",
+        "顆粒"
+      ],
+      "prompt_zh": "復古類比底片質感，略微褪色的色彩，柔和對比，細微自然的底片顆粒，溫和的高光與不過度壓黑的陰影，呈現懷舊且有機的影像氣息。",
+      "prompt_en": "Vintage analog film aesthetic, gently faded colors, soft contrast, subtle organic film grain, warm highlights, and shadows that retain detail, creating a nostalgic and tactile image.",
+      "template_zh": "將 {SUBJECT_SCENE} 呈現為復古類比底片影像，使用略微褪色的色彩、柔和對比與細微底片顆粒，讓高光自然柔和、陰影保留細節。整體帶有懷舊、有機的質感，但不刻意加入過重的刮痕或老化效果。",
+      "template_en": "Render {SUBJECT_SCENE} with a vintage analog film aesthetic, gently faded colors, soft contrast, and subtle film grain. Keep highlights soft and shadow detail visible for a nostalgic, organic texture without excessive scratches or artificial aging.",
+      "compatible_styles": [
+        "analog-film-grain",
+        "warm-cinematic",
+        "golden-hour",
+        "muted-tones"
+      ],
+      "avoid_combinations": [
+        "clean-airy",
+        "bold-contrast"
+      ]
+    },
+    {
+      "id": "minimalist-luxury",
+      "name_zh": "極簡高級風格",
+      "name_en": "Minimalist Luxury",
+      "category": "visual_aesthetics",
+      "description": "克制的色彩、整潔的構圖與精緻材質，突出畫面的秩序感與高級感。",
+      "visual_tags": [
+        "極簡",
+        "高級感",
+        "留白",
+        "精緻"
+      ],
+      "prompt_zh": "極簡高級視覺風格，乾淨有秩序的構圖，克制的中性色彩，精準的光線控制，細膩材質與適度留白，畫面優雅、沉穩且不顯浮誇。",
+      "prompt_en": "Minimalist luxury aesthetic, clean orderly composition, restrained neutral palette, precise lighting control, refined material textures, and deliberate negative space for an elegant, understated finish.",
+      "template_zh": "以極簡高級風格呈現 {SUBJECT_SCENE}，使用乾淨有秩序的構圖、克制的中性色彩與精準光線，突顯材質細節並保留適度留白。整體優雅、沉穩、精緻，避免多餘裝飾與過度飽和。",
+      "template_en": "Present {SUBJECT_SCENE} in a minimalist luxury style, with clean orderly composition, a restrained neutral palette, precise lighting, refined material details, and deliberate negative space. Keep the result elegant and understated, avoiding unnecessary decoration or excessive saturation.",
+      "compatible_styles": [
+        "soft-natural-light",
+        "clean-airy",
+        "korean-aesthetic",
+        "chiaroscuro"
+      ],
+      "avoid_combinations": [
+        "handheld-realism",
+        "bold-contrast"
+      ]
+    },
+    {
+      "id": "golden-hour",
+      "name_zh": "黃金時刻",
+      "name_en": "Golden Hour",
+      "category": "lighting_mood",
+      "description": "以日出後或日落前的溫暖斜射光與延伸陰影，營造自然、柔暖且有空氣感的畫面。",
+      "visual_tags": [
+        "暖光",
+        "自然光",
+        "柔和陰影",
+        "戶外"
+      ],
+      "prompt_zh": "黃金時刻的溫暖斜射陽光，柔和的金色高光，延伸而細膩的陰影，自然的光線衰減與溫暖空氣感，保留真實色彩與細節。",
+      "prompt_en": "Golden-hour sunlight, warm angled rays, soft golden highlights, long delicate shadows, natural light falloff, and a warm atmospheric feel while preserving realistic colors and detail.",
+      "template_zh": "以黃金時刻的光線呈現 {SUBJECT_SCENE}，讓溫暖的斜射陽光形成柔和金色高光與自然延伸的陰影。保留光線方向、真實材質與自然色彩，避免過度橘黃或不自然的光暈。",
+      "template_en": "Render {SUBJECT_SCENE} under golden-hour lighting, with warm angled sunlight, soft golden highlights, and naturally extended shadows. Preserve realistic textures, coherent light direction, and natural colors without excessive orange tint or artificial glow.",
+      "compatible_styles": [
+        "cinematic",
+        "japanese-aesthetic",
+        "warm-cinematic",
+        "smooth-motion"
+      ],
+      "avoid_combinations": [
+        "neon-noir",
+        "blue-grey"
+      ]
+    },
+    {
+      "id": "soft-natural-light",
+      "name_zh": "柔和自然光",
+      "name_en": "Soft Natural Light",
+      "category": "lighting_mood",
+      "description": "光線均勻、陰影柔順、亮部過渡自然，適合清爽、真實且不過度戲劇化的畫面。",
+      "visual_tags": [
+        "柔光",
+        "自然",
+        "均勻光線",
+        "低反差"
+      ],
+      "prompt_zh": "柔和的自然環境光，均勻的亮度分布，柔順的陰影與平滑的明暗過渡，保留真實膚色與材質細節，避免刺眼高光和生硬陰影。",
+      "prompt_en": "Soft natural ambient light, even illumination, gentle shadows, smooth tonal transitions, realistic skin tones and textures, with no harsh highlights or hard-edged shadows.",
+      "template_zh": "以柔和自然光呈現 {SUBJECT_SCENE}，保持均勻的亮度分布、柔順陰影與平滑明暗過渡，讓材質與色彩自然呈現，避免刺眼高光、生硬陰影或不必要的戲劇性照明。",
+      "template_en": "Render {SUBJECT_SCENE} in soft natural light, with even illumination, gentle shadows, and smooth tonal transitions. Keep textures and colors natural, avoiding harsh highlights, hard shadows, or unnecessary dramatic lighting.",
+      "compatible_styles": [
+        "japanese-aesthetic",
+        "korean-aesthetic",
+        "documentary",
+        "clean-airy"
+      ],
+      "avoid_combinations": [
+        "chiaroscuro",
+        "neon-noir"
+      ]
+    },
+    {
+      "id": "chiaroscuro",
+      "name_zh": "戲劇性明暗光影",
+      "name_en": "Chiaroscuro Lighting",
+      "category": "lighting_mood",
+      "description": "以明顯的亮暗對比塑造立體感，讓光線成為畫面的視覺重點。",
+      "visual_tags": [
+        "高明暗對比",
+        "戲劇性",
+        "深陰影",
+        "立體光線"
+      ],
+      "prompt_zh": "戲劇性的明暗對比照明，方向明確的主光源，深邃但保留層次的陰影，雕塑般的高光與立體光線，營造強烈而精準的視覺張力。",
+      "prompt_en": "Chiaroscuro lighting, a clearly defined directional key light, deep but detailed shadows, sculpted highlights, and dimensional light shaping for controlled visual drama.",
+      "template_zh": "以戲劇性明暗光影呈現 {SUBJECT_SCENE}，使用方向明確的主光源與深邃但保留細節的陰影，讓高光塑造立體層次。保持光線方向一致，避免整體曝光過暗或亮部細節完全消失。",
+      "template_en": "Render {SUBJECT_SCENE} with chiaroscuro lighting, using a clearly defined directional key light and deep shadows that retain detail. Let highlights shape dimensional form while maintaining coherent light direction and preserving important bright areas.",
+      "compatible_styles": [
+        "cinematic",
+        "minimalist-luxury",
+        "warm-cinematic",
+        "blue-grey"
+      ],
+      "avoid_combinations": [
+        "soft-natural-light",
+        "clean-airy"
+      ]
+    },
+    {
+      "id": "backlighting",
+      "name_zh": "逆光輪廓",
+      "name_en": "Backlighting",
+      "category": "lighting_mood",
+      "description": "由主體後方形成明亮輪廓與透光效果，強調主體邊緣、空氣感與光線方向。",
+      "visual_tags": [
+        "逆光",
+        "輪廓光",
+        "透光",
+        "空氣感"
+      ],
+      "prompt_zh": "具有方向感的逆光，主體邊緣形成自然明亮的輪廓，光線穿透薄透材質與環境微粒，亮部柔和且保留細節，整體呈現有層次的空氣感。",
+      "prompt_en": "Directional backlighting, naturally illuminated subject edges, light passing through translucent materials or subtle atmospheric particles, soft highlights with retained detail, and layered atmospheric depth.",
+      "template_zh": "以逆光輪廓呈現 {SUBJECT_SCENE}，讓來自主體後方的光線勾勒自然明亮的邊緣，並在適當位置形成柔和透光效果。保持高光細節與合理曝光，避免輪廓過度發亮或整個主體變成無細節剪影。",
+      "template_en": "Render {SUBJECT_SCENE} with directional backlighting that creates natural luminous edges and subtle translucency where appropriate. Preserve highlight detail and balanced exposure, avoiding exaggerated glowing outlines or featureless silhouettes.",
+      "compatible_styles": [
+        "golden-hour",
+        "dreamy-glow",
+        "cinematic",
+        "warm-cinematic"
+      ],
+      "avoid_combinations": [
+        "neon-noir",
+        "chiaroscuro"
+      ]
+    },
+    {
+      "id": "neon-noir",
+      "name_zh": "霓虹夜景",
+      "name_en": "Neon Noir",
+      "category": "lighting_mood",
+      "description": "以霓虹色光、深色陰影與環境反射營造都會夜景、強烈色彩及神秘氛圍。",
+      "visual_tags": [
+        "夜景",
+        "霓虹",
+        "冷暖對比",
+        "都會"
+      ],
+      "prompt_zh": "霓虹夜景照明，藍紫與洋紅等彩色光源，濕潤表面上的自然反射，深色陰影與局部高光形成冷暖對比，營造精緻且有層次的都會夜間氛圍。",
+      "prompt_en": "Neon noir lighting, colored blue-violet and magenta light sources, natural reflections on wet surfaces, deep shadows, and selective highlights creating a layered urban night atmosphere.",
+      "template_zh": "以霓虹夜景風格呈現 {SUBJECT_SCENE}，使用藍紫、洋紅等彩色光源與深色陰影形成冷暖對比，讓環境表面出現合理的彩色反射。維持光源方向與反射邏輯一致，避免色彩混濁或全畫面過度發亮。",
+      "template_en": "Render {SUBJECT_SCENE} in a neon-noir style, using blue-violet and magenta light sources against deep shadows. Create plausible colored reflections and coherent light direction, avoiding muddy colors or excessive overall brightness.",
+      "compatible_styles": [
+        "blue-grey",
+        "bold-contrast",
+        "motion-blur"
+      ],
+      "avoid_combinations": [
+        "soft-natural-light",
+        "golden-hour"
+      ]
+    },
+    {
+      "id": "dreamy-glow",
+      "name_zh": "朦朧夢幻光暈",
+      "name_en": "Dreamy Glow",
+      "category": "lighting_mood",
+      "description": "柔化高光並帶有細微光暈，營造朦朧、輕盈、夢境般的視覺氛圍。",
+      "visual_tags": [
+        "夢幻",
+        "柔焦",
+        "光暈",
+        "朦朧"
+      ],
+      "prompt_zh": "夢幻柔光，明亮區域帶有細緻而克制的光暈，柔和的高光擴散，低刺激的對比與輕盈的空氣感，同時保留主體輪廓與必要細節。",
+      "prompt_en": "Dreamy soft lighting, subtle controlled highlight bloom, gentle light diffusion, low-intensity contrast, and an airy ethereal atmosphere while preserving subject contours and essential detail.",
+      "template_zh": "以朦朧夢幻光暈呈現 {SUBJECT_SCENE}，使用柔和高光擴散與克制的光暈效果，營造輕盈、朦朧的視覺氛圍。主體輪廓仍需清楚，避免過度模糊、白霧遮蔽或細節流失。",
+      "template_en": "Render {SUBJECT_SCENE} with a dreamy glow, using gentle highlight diffusion and restrained bloom for an airy, ethereal atmosphere. Keep subject contours readable and avoid excessive blur, veiling haze, or loss of important detail.",
+      "compatible_styles": [
+        "japanese-aesthetic",
+        "backlighting",
+        "warm-cinematic"
+      ],
+      "avoid_combinations": [
+        "documentary",
+        "bold-contrast"
+      ]
+    },
+    {
+      "id": "warm-cinematic",
+      "name_zh": "暖色電影調",
+      "name_en": "Warm Cinematic",
+      "category": "color_texture",
+      "description": "以暖色高光、豐富中間調與自然陰影建立溫暖、成熟且具有電影感的色彩。",
+      "visual_tags": [
+        "暖色",
+        "電影調色",
+        "豐富層次",
+        "自然膚色"
+      ],
+      "prompt_zh": "暖色電影式色彩分級，溫暖但不過度偏橘的高光，層次豐富的中間調，自然陰影與真實色彩分離，保留材質細節與自然膚色。",
+      "prompt_en": "Warm cinematic color grading, amber-leaning but restrained highlights, rich midtones, natural shadows, realistic color separation, and preserved texture and skin tones.",
+      "template_zh": "以暖色電影調呈現 {SUBJECT_SCENE}，讓高光帶有適度暖意，中間調保持豐富層次，陰影自然且保留細節。維持真實色彩與材質，不要讓整體畫面過度偏橘或失去色彩區分。",
+      "template_en": "Render {SUBJECT_SCENE} with warm cinematic color grading, restrained warm highlights, rich midtones, and natural shadows with preserved detail. Maintain realistic textures and color separation without excessive orange tint.",
+      "compatible_styles": [
+        "cinematic",
+        "golden-hour",
+        "vintage-film",
+        "backlighting"
+      ],
+      "avoid_combinations": [
+        "blue-grey",
+        "neon-noir"
+      ]
+    },
+    {
+      "id": "blue-grey",
+      "name_zh": "冷調藍灰",
+      "name_en": "Blue-Grey Tone",
+      "category": "color_texture",
+      "description": "以冷調藍灰色彩、克制飽和度與清晰明暗層次，營造冷靜、俐落或疏離的視覺感受。",
+      "visual_tags": [
+        "冷色",
+        "藍灰",
+        "低飽和",
+        "清冷"
+      ],
+      "prompt_zh": "冷調藍灰色彩分級，克制的飽和度，清晰但自然的明暗分離，偏冷的陰影與中性高光，保留真實材質與細節，避免整體泛藍失真。",
+      "prompt_en": "Cool blue-grey color grading, restrained saturation, clear yet natural tonal separation, cool shadows, neutral highlights, and realistic textures without an excessive blue cast.",
+      "template_zh": "以冷調藍灰色彩呈現 {SUBJECT_SCENE}，採用克制飽和度、偏冷陰影與中性高光，讓明暗層次清楚但自然。保留主體真實色彩與材質，避免整體泛藍或失去必要的色彩差異。",
+      "template_en": "Render {SUBJECT_SCENE} with cool blue-grey grading, restrained saturation, cool shadows, and neutral highlights. Keep tonal separation clear but natural, preserving realistic subject colors and textures without an excessive blue cast.",
+      "compatible_styles": [
+        "cinematic",
+        "chiaroscuro",
+        "neon-noir",
+        "motion-blur"
+      ],
+      "avoid_combinations": [
+        "golden-hour",
+        "warm-cinematic"
+      ]
+    },
+    {
+      "id": "muted-tones",
+      "name_zh": "低飽和莫蘭迪",
+      "name_en": "Muted Tones",
+      "category": "color_texture",
+      "description": "以柔和、灰階感較高且彼此協調的色彩，呈現安靜、耐看、不刺眼的影像質感。",
+      "visual_tags": [
+        "低飽和",
+        "柔和色彩",
+        "沉靜",
+        "灰調"
+      ],
+      "prompt_zh": "低飽和且彼此協調的柔和色彩，帶有適度灰調的中間色，克制的色彩對比，平順的色彩過渡與自然材質，呈現安靜、耐看的視覺質感。",
+      "prompt_en": "Muted, harmonious colors, softly greyed midtones, restrained color contrast, smooth tonal transitions, and natural textures for a calm, understated visual finish.",
+      "template_zh": "以低飽和莫蘭迪色調呈現 {SUBJECT_SCENE}，採用柔和且互相協調的色彩、適度灰調的中間色與克制的對比。保持色彩層次與材質細節，避免畫面灰濁、失去主體辨識度。",
+      "template_en": "Render {SUBJECT_SCENE} with muted, Morandi-inspired tones, using harmonious low-saturation colors, softly greyed midtones, and restrained contrast. Preserve tonal variation and material detail without making the image muddy or reducing subject clarity.",
+      "compatible_styles": [
+        "japanese-aesthetic",
+        "vintage-film",
+        "soft-natural-light",
+        "documentary"
+      ],
+      "avoid_combinations": [
+        "bold-contrast",
+        "neon-noir"
+      ]
+    },
+    {
+      "id": "clean-airy",
+      "name_zh": "高明亮通透",
+      "name_en": "Clean & Airy",
+      "category": "color_texture",
+      "description": "畫面明亮乾淨、白色自然、陰影輕柔，呈現清爽通透而不過曝的質感。",
+      "visual_tags": [
+        "明亮",
+        "通透",
+        "乾淨",
+        "高亮度"
+      ],
+      "prompt_zh": "明亮通透的影像質感，乾淨自然的白色，柔和陰影，清楚的細節與適度對比，整體曝光明亮但保留高光資訊，不過曝、不泛白。",
+      "prompt_en": "Bright airy image quality, clean natural whites, soft shadows, clear details, moderate contrast, and luminous exposure with preserved highlights, avoiding blown-out whites or a washed-out look.",
+      "template_zh": "以明亮通透的視覺風格呈現 {SUBJECT_SCENE}，維持乾淨自然的白色、柔和陰影與清楚細節。曝光明亮但保留高光層次，避免過曝、泛白或讓色彩顯得不自然。",
+      "template_en": "Render {SUBJECT_SCENE} with a bright, airy visual style, clean natural whites, soft shadows, and clear details. Keep the exposure luminous while preserving highlight detail, avoiding blown-out whites, a washed-out image, or unnatural colors.",
+      "compatible_styles": [
+        "korean-aesthetic",
+        "soft-natural-light",
+        "minimalist-luxury"
+      ],
+      "avoid_combinations": [
+        "chiaroscuro",
+        "neon-noir"
+      ]
+    },
+    {
+      "id": "analog-film-grain",
+      "name_zh": "類比底片顆粒",
+      "name_en": "Analog Film Grain",
+      "category": "color_texture",
+      "description": "在畫面中加入細微、有機的類比底片顆粒與非數位化質感，但不過度破壞細節。",
+      "visual_tags": [
+        "顆粒",
+        "類比質感",
+        "細節",
+        "復古"
+      ],
+      "prompt_zh": "細微且自然的類比底片顆粒，有機的影像紋理，輕微非數位化質感，保留主體邊緣與重要細節，顆粒分布自然，不出現過度噪點。",
+      "prompt_en": "Subtle organic analog film grain, tactile image texture, a gently non-digital finish, preserved subject edges and important details, with natural grain distribution and no excessive noise.",
+      "template_zh": "為 {SUBJECT_SCENE} 加入細微且自然的類比底片顆粒與有機影像紋理。顆粒應融入畫面而非遮蔽主體，保留邊緣清晰度與重要細節，避免過重噪點或數位壓縮瑕疵。",
+      "template_en": "Apply subtle organic analog film grain and tactile image texture to {SUBJECT_SCENE}. Let the grain integrate naturally without obscuring the subject, preserving edge clarity and important details while avoiding excessive noise or digital compression artifacts.",
+      "compatible_styles": [
+        "vintage-film",
+        "cinematic",
+        "muted-tones",
+        "warm-cinematic"
+      ],
+      "avoid_combinations": [
+        "clean-airy",
+        "korean-aesthetic"
+      ]
+    },
+    {
+      "id": "bold-contrast",
+      "name_zh": "高對比鮮明色彩",
+      "name_en": "Bold Contrast",
+      "category": "color_texture",
+      "description": "強化色彩飽和度與明暗分離，呈現鮮明、有衝擊力且視覺重點突出的畫面。",
+      "visual_tags": [
+        "高對比",
+        "鮮明色彩",
+        "強烈",
+        "視覺衝擊"
+      ],
+      "prompt_zh": "鮮明且有控制的色彩，高對比明暗分離，清楚的視覺重點，深色區域與亮部具有層次，色彩飽和但不溢色，保持主體細節。",
+      "prompt_en": "Vivid but controlled colors, high-contrast tonal separation, clear visual emphasis, dimensional shadows and highlights, rich saturation without color bleeding, and preserved subject detail.",
+      "template_zh": "以高對比鮮明色彩呈現 {SUBJECT_SCENE}，加強明暗分離與色彩表現，讓視覺重點清楚突出。保持亮部和暗部細節，避免色彩溢出、過度飽和或失去自然層次。",
+      "template_en": "Render {SUBJECT_SCENE} with bold contrast and vivid but controlled colors. Strengthen tonal separation and visual emphasis while preserving highlight and shadow detail, avoiding color bleeding, oversaturation, or unnatural tonal transitions.",
+      "compatible_styles": [
+        "neon-noir",
+        "cinematic",
+        "motion-blur"
+      ],
+      "avoid_combinations": [
+        "muted-tones",
+        "japanese-aesthetic"
+      ]
+    },
+    {
+      "id": "smooth-motion",
+      "name_zh": "平滑流暢運鏡",
+      "name_en": "Smooth Camera Motion",
+      "category": "motion_presentation",
+      "description": "強調穩定、連續、自然的攝影機移動，避免不必要的震動與突然跳動。",
+      "visual_tags": [
+        "平滑",
+        "穩定",
+        "流暢運鏡",
+        "連續動態"
+      ],
+      "prompt_zh": "攝影機移動平滑、穩定且連續，速度變化自然，運動軌跡清楚，畫面沒有不必要的震動、突跳或不合理的方向變化。",
+      "prompt_en": "Smooth, stable, continuous camera movement, natural speed transitions, coherent motion paths, and no unnecessary shake, abrupt jumps, or implausible direction changes.",
+      "template_zh": "以平滑流暢的運鏡呈現 {SUBJECT_SCENE}，讓攝影機移動穩定連續、速度變化自然，保持清楚且合理的運動軌跡。避免不必要的震動、突跳與不連貫的方向變化。",
+      "template_en": "Render {SUBJECT_SCENE} with smooth, fluid camera movement, stable continuous motion, natural speed transitions, and coherent motion paths. Avoid unnecessary shake, abrupt jumps, or inconsistent changes in direction.",
+      "compatible_styles": [
+        "cinematic",
+        "japanese-aesthetic",
+        "golden-hour",
+        "minimalist-luxury"
+      ],
+      "avoid_combinations": [
+        "handheld-realism",
+        "motion-blur"
+      ]
+    },
+    {
+      "id": "handheld-realism",
+      "name_zh": "手持紀實感",
+      "name_en": "Handheld Realism",
+      "category": "motion_presentation",
+      "description": "保留輕微且自然的手持晃動，營造臨場、貼近現場的真實拍攝感。",
+      "visual_tags": [
+        "手持",
+        "臨場感",
+        "紀實",
+        "自然晃動"
+      ],
+      "prompt_zh": "自然的手持攝影質感，輕微且合理的鏡頭晃動，具有現場臨場感的視角變化，運動符合人體操作攝影機的特性，不出現誇張抖動。",
+      "prompt_en": "Natural handheld camera feel, subtle plausible camera shake, an immediate on-location perspective, and movement consistent with human-operated filming without exaggerated wobble.",
+      "template_zh": "以自然手持紀實感呈現 {SUBJECT_SCENE}，保留輕微且合理的攝影機晃動與現場臨場感。運動應符合自然手持拍攝的特性，避免過度抖動、突發跳動或不自然的畫面扭曲。",
+      "template_en": "Render {SUBJECT_SCENE} with a natural handheld documentary feel, retaining subtle, plausible camera shake and an immediate on-location perspective. Keep movement consistent with real handheld filming, avoiding excessive wobble, sudden jumps, or unnatural image warping.",
+      "compatible_styles": [
+        "documentary",
+        "first-person",
+        "vintage-film",
+        "neon-noir"
+      ],
+      "avoid_combinations": [
+        "smooth-motion",
+        "minimalist-luxury"
+      ]
+    },
+    {
+      "id": "first-person",
+      "name_zh": "沉浸式第一人稱",
+      "name_en": "First-Person POV",
+      "category": "motion_presentation",
+      "description": "以接近觀看者自身視角的構圖與移動方式，呈現親身置身現場的空間感。",
+      "visual_tags": [
+        "第一人稱",
+        "沉浸式",
+        "主觀視角",
+        "臨場感"
+      ],
+      "prompt_zh": "沉浸式第一人稱視角，符合人體視線高度的自然構圖，空間移動具有真實的前進感與合理視差，畫面帶有親身置身現場的臨場感。",
+      "prompt_en": "Immersive first-person POV, natural eye-level framing, realistic forward movement and spatial parallax, creating the feeling of physically being present in the environment.",
+      "template_zh": "以沉浸式第一人稱視角呈現 {SUBJECT_SCENE}，採用自然的視線高度與合理的空間視差，讓移動具有真實的前進感與臨場感。避免不合理的視角跳轉、漂浮移動或不自然的透視變形。",
+      "template_en": "Render {SUBJECT_SCENE} from an immersive first-person POV, using natural eye-level framing and plausible spatial parallax. Create a convincing sense of physical presence while avoiding implausible viewpoint jumps, floating movement, or unnatural perspective distortion.",
+      "compatible_styles": [
+        "documentary",
+        "handheld-realism",
+        "smooth-motion",
+        "soft-natural-light"
+      ],
+      "avoid_combinations": [
+        "chiaroscuro",
+        "minimalist-luxury"
+      ]
+    },
+    {
+      "id": "slow-motion",
+      "name_zh": "電影慢動作",
+      "name_en": "Cinematic Slow Motion",
+      "category": "motion_presentation",
+      "description": "以平順、細緻的慢動作呈現運動過程，強調動作細節與時間延展感。",
+      "visual_tags": [
+        "慢動作",
+        "細節",
+        "優雅動態",
+        "時間延展"
+      ],
+      "prompt_zh": "平順且細緻的電影慢動作，主體運動連續自然，動作細節清晰可辨，時間延展感明確，避免不自然的卡頓、重影或肢體變形。",
+      "prompt_en": "Smooth, detailed cinematic slow motion, continuous natural subject movement, clearly rendered motion details, and a pronounced sense of temporal extension without stuttering, ghosting, or anatomical distortion.",
+      "template_zh": "以電影慢動作呈現 {SUBJECT_SCENE}，讓主體動作平順延展、細節清楚且連續自然。保留合理的動態節奏，避免卡頓、重影、動作循環不自然或主體形變。",
+      "template_en": "Render {SUBJECT_SCENE} in cinematic slow motion, with smoothly extended movement, clear details, and continuous natural motion. Maintain plausible motion timing while avoiding stutter, ghosting, unnatural looping, or subject deformation.",
+      "compatible_styles": [
+        "cinematic",
+        "backlighting",
+        "warm-cinematic",
+        "dreamy-glow"
+      ],
+      "avoid_combinations": [
+        "motion-blur",
+        "bold-contrast"
+      ]
+    },
+    {
+      "id": "motion-blur",
+      "name_zh": "動態模糊",
+      "name_en": "Motion Blur",
+      "category": "motion_presentation",
+      "description": "透過符合運動方向的模糊效果強化速度感，主體與環境仍需保有可辨識的層次。",
+      "visual_tags": [
+        "速度感",
+        "動態模糊",
+        "流動感",
+        "動態"
+      ],
+      "prompt_zh": "符合運動方向的自然動態模糊，速度感清楚，模糊程度受控，主要主體仍可辨識，畫面保有合理的空間連續性與細節。",
+      "prompt_en": "Natural directional motion blur, a clear sense of speed, controlled blur intensity, a recognizable primary subject, and coherent spatial continuity with sufficient detail.",
+      "template_zh": "為 {SUBJECT_SCENE} 呈現符合運動方向的動態模糊，強化速度與流動感，但控制模糊程度，確保主要主體仍可辨識，避免整個畫面糊成一片或出現不合理的拖影。",
+      "template_en": "Apply natural directional motion blur to {SUBJECT_SCENE} to emphasize speed and flow. Keep blur intensity controlled so the main subject remains recognizable, avoiding an entirely smeared image or implausible trails.",
+      "compatible_styles": [
+        "neon-noir",
+        "blue-grey",
+        "bold-contrast",
+        "handheld-realism"
+      ],
+      "avoid_combinations": [
+        "smooth-motion",
+        "slow-motion"
+      ]
+    },
+    {
+      "id": "surreal",
+      "name_zh": "超現實奇幻",
+      "name_en": "Surreal Visuals",
+      "category": "motion_presentation",
+      "description": "呈現超越現實物理規則的視覺變化，具有夢境、異想或不可能場景的影像質感。",
+      "visual_tags": [
+        "超現實",
+        "奇幻",
+        "夢境",
+        "想像力"
+      ],
+      "prompt_zh": "超現實視覺美學，夢境般的空間關係，不可能的視覺轉換，具有想像力的形態與尺度變化，畫面細節精緻且視覺邏輯一致於奇幻設定。",
+      "prompt_en": "Surreal visual aesthetic, dreamlike spatial relationships, impossible visual transformations, imaginative forms and scale shifts, with refined details and visual logic consistent with a fantastical world.",
+      "template_zh": "以超現實奇幻風格呈現 {SUBJECT_SCENE}，運用夢境般的空間關係、不可能的視覺轉換與富有想像力的形態變化。維持整體視覺風格一致，讓奇幻效果有明確的視覺邏輯，而非隨機堆疊元素。",
+      "template_en": "Render {SUBJECT_SCENE} with a surreal visual aesthetic, using dreamlike spatial relationships, impossible visual transformations, and imaginative forms. Maintain a coherent overall visual language so the fantastical effects feel intentional rather than randomly assembled.",
+      "compatible_styles": [
+        "dreamy-glow",
+        "bold-contrast",
+        "neon-noir",
+        "cinematic"
+      ],
+      "avoid_combinations": [
+        "documentary",
+        "clean-airy"
+      ]
+    }
+  ]
+}

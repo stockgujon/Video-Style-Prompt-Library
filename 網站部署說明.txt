@@ -1,0 +1,20 @@
+影片風格提示詞庫｜GitHub Pages 部署說明
+
+檔案內容
+- index.html：網站本體
+- styles.json：24 種影片視覺風格資料庫
+
+部署方式
+1. 在 GitHub 建立新的 repository，或進入既有的網站 repository。
+2. 將 index.html 與 styles.json 放在 repository 根目錄（同一層）。
+3. Commit 並 Push 檔案。
+4. 進入 repository 的 Settings → Pages。
+5. 在 Build and deployment 選擇 Deploy from a branch，指定 main 分支與 /(root)，再儲存。
+6. 等待 GitHub Pages 部署完成後，開啟提供的網站網址。
+
+注意
+- 網站是純前端靜態網站，不需要 API、登入、資料庫或後端。
+- 網站會從同一資料夾讀取 styles.json，因此請勿只上傳 index.html。
+- 直接以 file:// 開啟 index.html 時，瀏覽器可能阻擋 JSON 載入；建議用 GitHub Pages 或本機 HTTP 伺服器測試。
+- 頁尾 Instagram 連結已設為 https://www.instagram.com/stockgujon
+- 修改風格資料時，可直接編輯 styles.json，保持欄位結構一致。
