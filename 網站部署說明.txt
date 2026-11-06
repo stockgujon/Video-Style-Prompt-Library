@@ -1,20 +1,15 @@
-影片風格提示詞庫｜GitHub Pages 部署說明
+知識型影片視覺提示詞庫 v2.0｜GitHub Pages 部署說明
 
-檔案內容
-- index.html：網站本體
-- styles.json：24 種影片視覺風格資料庫
+網站定位：以財經知識、財經解說、商業分析、專業知識分享為核心，也適用一般教育、科技科普、生活知識與資訊解說。只提供視覺呈現提示詞，不生成企劃、腳本或分鏡。
 
-部署方式
-1. 在 GitHub 建立新的 repository，或進入既有的網站 repository。
-2. 將 index.html 與 styles.json 放在 repository 根目錄（同一層）。
-3. Commit 並 Push 檔案。
-4. 進入 repository 的 Settings → Pages。
-5. 在 Build and deployment 選擇 Deploy from a branch，指定 main 分支與 /(root)，再儲存。
-6. 等待 GitHub Pages 部署完成後，開啟提供的網站網址。
+五大分類：
+1. 財經與商業解說：8 種
+2. 數據與資訊圖表：8 種
+3. 知識與教育動畫：8 種
+4. 專業簡報與紀實：6 種
+5. 創意視覺呈現：6 種
+合計 36 種風格。
 
-注意
-- 網站是純前端靜態網站，不需要 API、登入、資料庫或後端。
-- 網站會從同一資料夾讀取 styles.json，因此請勿只上傳 index.html。
-- 直接以 file:// 開啟 index.html 時，瀏覽器可能阻擋 JSON 載入；建議用 GitHub Pages 或本機 HTTP 伺服器測試。
-- 頁尾 Instagram 連結已設為 https://www.instagram.com/stockgujon
-- 修改風格資料時，可直接編輯 styles.json，保持欄位結構一致。
+部署：將 index.html 與 styles.json 一起放在 GitHub Repository 根目錄。GitHub Pages 設定為 Deploy from a branch、main、/(root)。
+網站為純前端靜態網站，不需要 API、登入或後端。平台尺寸與提示詞組合功能均保留。
+頁尾 Instagram 連結：https://www.instagram.com/stockgujon

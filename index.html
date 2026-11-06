@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080808">
   <meta name="description" content="影片視覺風格提示詞資料庫，快速搜尋、瀏覽並複製中英文風格提示詞與模板。">
-  <title>影片風格提示詞庫｜股匠理財部落</title>
+  <title>知識型影片視覺提示詞庫｜股匠理財部落</title>
   <style>
     :root {
       color-scheme: dark;
@@ -81,6 +81,9 @@
     .close-btn { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 10px; border: 1px solid #444; color: white; background: #202020; font-size: 1.3rem; }
     .modal-body { padding: 20px 24px 25px; overflow-y: auto; }
     .detail-description { color: #c8c8c8; margin: 0 0 18px; }
+    .detail-meta { margin: 0 0 16px; padding: 12px 14px; border: 1px solid #333; border-radius: 10px; background: #151515; }
+    .detail-meta p { margin: 3px 0; color: #c8c8c8; font-size: .87rem; }
+    .detail-meta strong { color: var(--yellow); }
     .prompt-section { margin-top: 20px; }
     .prompt-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 9px; }
     .prompt-head h3 { margin: 0; color: var(--yellow); font-size: 1rem; }
@@ -158,9 +161,9 @@
     <div class="shell">
       <div class="eyebrow">VIDEO STYLE PROMPT LIBRARY</div>
       <h1>影片風格<span>提示詞庫</span></h1>
-      <p class="lead">把視覺風格變成可直接使用的提示詞。搜尋你想要的影像美學、光影、色彩質感與動態呈現，快速複製並套用到自己的影片主題。</p>
+      <p class="lead">以財經、商業與專業知識分享為核心，搜尋解說、數據圖表、教育動畫與專業簡報風格，快速組合成可直接使用的影片視覺提示詞。</p>
       <div class="hero-meta">
-        <span class="meta-pill">24 種視覺風格</span>
+        <span class="meta-pill">36 種知識型視覺風格</span>
         <span class="meta-pill">中英雙語提示詞</span>
         <span class="meta-pill">一鍵複製</span>
         <span class="meta-pill">純前端・無需登入</span>
@@ -176,7 +179,7 @@
           <h2 id="platform-heading">影片平台與畫面規格</h2>
           <p>先選擇發布平台，再把輸出規格與下方任一視覺風格組合成提示詞。</p>
         </div>
-        <span class="meta-pill">可與 24 種風格搭配</span>
+        <span class="meta-pill">可與 36 種風格搭配</span>
       </div>
       <div class="platform-grid">
         <div class="field">
@@ -485,6 +488,10 @@
       }).join("");
       $("#detail-body").innerHTML = `
         <p class="detail-description">${escapeHTML(style.description)}</p>
+        <div class="detail-meta">
+          <p><strong>適合內容：</strong>${escapeHTML(style.suitable_for || "一般知識解說")}</p>
+          <p><strong>視覺呈現：</strong>${escapeHTML(style.visual_method || "依提示詞內容呈現")}</p>
+        </div>
         <div class="visual-tags">${(style.visual_tags || []).map(tag => `<span>${escapeHTML(tag)}</span>`).join("")}</div>
         ${promptBlock("純風格提示詞｜中文", style.prompt_zh, style.id, "prompt_zh")}
         ${promptBlock("純風格提示詞｜English", style.prompt_en, style.id, "prompt_en")}
@@ -492,7 +499,7 @@
         ${promptBlock("完整風格模板｜English", style.template_en, style.id, "template_en")}
         ${compatible ? `<section class="prompt-section"><div class="prompt-head"><h3>可搭配風格</h3></div><div class="compat">${compatible}</div></section>` : ""}
         ${avoid ? `<section class="prompt-section"><div class="prompt-head"><h3>建議避免直接混搭</h3></div><div class="compat">${avoid}</div></section>` : ""}
-        <p class="hint">提示：模板中的 <code>{SUBJECT_SCENE}</code> 請替換成你自己的主題或場景描述；本工具只提供視覺風格提示詞。</p>`;
+        <p class="hint">提示：模板中的 <code>{SUBJECT_SCENE}</code> 請替換成你自己的主題或場景描述；本工具只提供視覺風格提示詞，不生成企劃、腳本或分鏡。財經與專業內容中的數字、文字及圖表，請以你提供的正確資料為準。</p>`;
       dialog.showModal();
     }
     document.addEventListener("click", (event) => {
